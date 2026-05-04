@@ -26,14 +26,6 @@ export const metadata: Metadata = {
     description: "India's finest Black Salt & Rock Salt manufacturer.",
     url: "https://marutisalts.com",
     siteName: "Maruti Salts",
-    images: [
-      {
-        url: "/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Maruti Salts",
-      },
-    ],
     locale: "en_US",
     type: "website",
   },
