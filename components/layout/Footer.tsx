@@ -28,9 +28,9 @@ export default function Footer() {
           <h4 className="font-display text-lg mb-6 text-white">Products</h4>
           <ul className="space-y-4 text-sm text-bg/70">
             <li><Link href="/products" className="hover:text-accent transition-colors">Black Salt (Kala Namak)</Link></li>
-            <li><Link href="/products" className="hover:text-accent transition-colors">Rock Salt (Sendha Namak)</Link></li>
-            <li><Link href="/products" className="hover:text-accent transition-colors">Export Grade</Link></li>
-            <li><Link href="/products" className="hover:text-accent transition-colors">Bulk Orders</Link></li>
+            <li><Link href="/products" className="hover:text-accent transition-colors">Rock Salt (Senda Namak)</Link></li>
+            <li><Link href="/products" className="hover:text-accent transition-colors">Industrial Salt</Link></li>
+            <li><Link href="/contact" className="hover:text-accent transition-colors">Bulk & Export Inquiries</Link></li>
           </ul>
         </div>
 

@@ -72,7 +72,7 @@ export default function TestimonialCTA() {
               href="/products" 
               className="bg-transparent border border-bg/30 text-bg px-8 py-4 uppercase tracking-widest text-sm text-center hover:bg-bg/10 transition-colors"
             >
-              Catalogue
+              Download Catalogue
             </Link>
           </div>
         </div>

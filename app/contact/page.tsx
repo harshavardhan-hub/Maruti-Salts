@@ -9,7 +9,7 @@ export default function ContactPage() {
             Let&apos;s talk<br className="hidden lg:block" /> salt.
           </h1>
           <p className="text-xl text-text/70 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-            Reach out to us for premium Black Salt and Rock Salt. We are ready to assist with bulk orders, export inquiries, and general questions.
+            Reach out to us for premium Black Salt, Rock Salt, and Industrial Salt. We are ready to assist with bulk orders, export inquiries, and general questions.
           </p>
         </div>
 

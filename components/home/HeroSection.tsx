@@ -46,7 +46,7 @@ export default function HeroSection() {
             transition={{ duration: 1, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
             className="text-lg md:text-xl text-text/80 max-w-md mb-10"
           >
-            India&apos;s finest Black Salt & Rock Salt manufacturer.
+            India&apos;s finest Black Salt, Rock Salt &amp; Industrial Salt manufacturer.
           </motion.p>
           
           <motion.div

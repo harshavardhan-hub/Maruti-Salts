@@ -3,55 +3,69 @@ import Link from "next/link";
 
 const PRODUCTS = [
   {
-    id: "black-salt-lumps",
-    name: "Premium Black Salt Lumps",
-    grade: "Industrial / Wholesale Grade",
-    description: "Unrefined Kala Namak harvested directly from natural volcanic mines. Ideal for grinding and commercial culinary use.",
+    id: "black-salt",
+    name: "Black Salt (Kala Namak)",
+    grade: "Ayurvedic & Food Grade",
+    description: "Authentic, mineral-rich Kala Namak harvested from natural deposits and refined with precision. Renowned for its therapeutic properties, distinctive volcanic aroma, and high iron content.",
     image: "/images/hero-crystal.jpg",
-    features: ["100% Natural", "High Sulphur Content", "Unprocessed"],
+    varieties: [
+      "Crystal Black Salt",
+      "Farnish Black Salt",
+      "Black Salt Mava",
+      "Black Salt Fine Granules",
+      "Black Salt Powder",
+    ],
+    features: ["100% Natural", "High Sulphur Content", "Ayurvedic Standard"],
   },
   {
-    id: "black-salt-powder",
-    name: "Fine Black Salt Powder",
-    grade: "Food & Culinary Grade",
-    description: "Finely milled black salt with a distinct umami flavor profile. Perfect for retail packaging, Ayurvedic formulations, and vegan cuisine.",
-    image: "/images/about-hero.jpg",
-    features: ["Perfectly Milled", "Aromatic", "Rich in Iron"],
-  },
-  {
-    id: "rock-salt-chunks",
-    name: "Pink Rock Salt Chunks",
-    grade: "Export Grade",
-    description: "Pristine Sendha Namak chunks untouched by modern pollutants. Perfect for premium retail, decorative lamps, or spa applications.",
+    id: "rock-salt",
+    name: "Rock Salt (Senda Namak)",
+    grade: "Himalayan & Wellness Grade",
+    description: "Untouched Sendha Namak preserved deep within ancient deposits. Naturally rich in essential trace minerals and electrolytes, making it the purest culinary and wellness salt.",
     image: "/images/rock-salt-chunks.jpg",
-    features: ["Trace Mineral Rich", "Aesthetically Pure", "Himalayan Origin"],
+    varieties: [
+      "Rock Salt Irani",
+      "Himalayan Pink Rock Salt (Lahori)",
+      "Rock Salt Granules",
+      "Rock Salt Suji",
+      "Rock Salt Powder",
+    ],
+    features: ["84+ Trace Minerals", "Pristine Origin", "Low Sodium Balance"],
   },
   {
-    id: "rock-salt-powder",
-    name: "Edible Rock Salt Powder",
-    grade: "Premium Table Grade",
-    description: "Milled to perfection for everyday culinary use. A healthier alternative to refined table salt with 84 essential minerals.",
+    id: "industrial-salt",
+    name: "Industrial Salt",
+    grade: "Commercial & Refined Grade",
+    description: "High-purity industrial and commercial salt formulations engineered for food manufacturing, chemical processing, water treatment, and specialized bulk applications.",
     image: "/images/process-extraction.jpg",
-    features: ["Free-flowing", "Low Sodium", "Unbleached"],
-  }
+    varieties: [
+      "Refined Crushed Salt",
+      "Free Flow Iodised Salt",
+      "Fine Dust Salt Powder",
+    ],
+    features: ["High Chemical Purity", "Uniform Granulation", "Bulk Supply Ready"],
+  },
 ];
 
 export default function ProductsPage() {
   return (
     <div className="min-h-screen pt-32 pb-20 container mx-auto px-6 lg:px-12">
-      <div className="max-w-3xl mb-20">
+      <div className="max-w-3xl mb-16">
         <h1 className="font-display text-[clamp(3rem,6vw,5rem)] leading-tight text-text mb-6">
           Our Pure Collection
         </h1>
         <p className="text-xl text-text/80 leading-relaxed">
-          Sourced from ancient earth deposits and refined with precision. We offer India&apos;s finest Black Salt and Rock Salt across multiple grades for bulk, retail, and industrial applications.
+          Sourced from ancient earth deposits and refined with precision. We offer India&apos;s finest Black Salt, Rock Salt, and Industrial Salt across multiple grades for bulk, retail, and industrial applications.
         </p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
         {PRODUCTS.map((product) => (
-          <div key={product.id} className="bg-surface group flex flex-col h-full border border-mineral/5 hover:border-accent/20 transition-colors duration-500">
-            <div className="w-full h-[400px] overflow-hidden relative">
+          <div 
+            key={product.id} 
+            className="bg-surface group flex flex-col h-full border border-mineral/10 hover:border-accent/40 transition-all duration-500 shadow-sm hover:shadow-xl rounded-sm overflow-hidden"
+          >
+            <div className="w-full h-[280px] overflow-hidden relative">
               <div className="absolute inset-0 bg-mineral/20 mix-blend-multiply z-10 group-hover:opacity-0 transition-opacity duration-700"></div>
               <img 
                 src={product.image} 
@@ -59,20 +73,35 @@ export default function ProductsPage() {
                 className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000 ease-out" 
               />
             </div>
-            <div className="p-10 flex flex-col flex-grow">
-              <h3 className="text-text/50 uppercase tracking-widest text-xs mb-3 font-medium">
+            
+            <div className="p-8 md:p-9 flex flex-col flex-grow">
+              <span className="text-text/50 uppercase tracking-widest text-xs mb-3 font-medium">
                 {product.grade}
-              </h3>
-              <h2 className="font-display text-3xl text-text mb-4 group-hover:text-accent transition-colors">
+              </span>
+              <h2 className="font-display text-2xl lg:text-3xl text-text mb-4 group-hover:text-accent transition-colors">
                 {product.name}
               </h2>
-              <p className="text-text/70 leading-relaxed mb-8 flex-grow">
+              <p className="text-text/70 text-sm leading-relaxed mb-6">
                 {product.description}
               </p>
               
-              <div className="flex flex-wrap gap-2 mb-10">
-                {product.features.map(f => (
-                  <span key={f} className="text-xs border border-mineral/20 px-3 py-1 text-text/60 rounded-full">
+              <div className="mb-6 flex-grow">
+                <span className="block text-xs uppercase tracking-wider text-text/50 font-semibold mb-3">
+                  Available Varieties:
+                </span>
+                <ul className="space-y-2">
+                  {product.varieties.map((v) => (
+                    <li key={v} className="flex items-center gap-2.5 text-sm text-text/85">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                      <span>{v}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-8 pt-2">
+                {product.features.map((f) => (
+                  <span key={f} className="text-[11px] border border-mineral/20 px-2.5 py-1 text-text/60 rounded-full">
                     {f}
                   </span>
                 ))}
@@ -80,7 +109,10 @@ export default function ProductsPage() {
 
               <div className="w-full h-[1px] bg-mineral/10 mb-6"></div>
               
-              <Link href="/contact" className="bg-transparent border border-mineral/30 text-text px-6 py-4 uppercase tracking-widest text-sm text-center hover:bg-mineral hover:text-bg hover:border-mineral transition-colors w-full">
+              <Link 
+                href="/contact" 
+                className="bg-transparent border border-mineral/30 text-text px-6 py-3.5 uppercase tracking-widest text-xs font-medium text-center hover:bg-mineral hover:text-bg hover:border-mineral transition-colors w-full block"
+              >
                 Request Pricing & Samples
               </Link>
             </div>

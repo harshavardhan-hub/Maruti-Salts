@@ -4,6 +4,7 @@ import "./globals.css";
 import LenisProvider from "@/components/layout/LenisProvider";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
 
 const cormorant = Cormorant_Garamond({ 
   subsets: ["latin"], 
@@ -52,6 +53,7 @@ export default function RootLayout({
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <WhatsAppButton />
         </LenisProvider>
       </body>
     </html>

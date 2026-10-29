@@ -7,7 +7,7 @@ export default function AboutPage() {
             A Legacy of<br />Purity.
           </h1>
           <p className="text-xl text-text/80 leading-relaxed mb-8">
-            Founded with a singular vision to bring the purest, unrefined minerals to the world, Maruti Salts has grown into India&apos;s most trusted name in Black Salt and Rock Salt manufacturing.
+            Founded with a singular vision to bring the purest, unrefined minerals to the world, Maruti Salts has grown into India&apos;s most trusted name in Black Salt, Rock Salt, and Industrial Salt manufacturing.
           </p>
           <p className="text-lg text-text/70 leading-relaxed">
             Our journey is rooted in an uncompromising commitment to quality, ensuring that every crystal we deliver carries the ancient essence of the earth.
