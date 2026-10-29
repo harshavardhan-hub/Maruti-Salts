@@ -1,6 +1,11 @@
 
 import Link from "next/link";
 
+const VARIETY_LINKS: Record<string, string> = {
+  "Black Salt Crystals": "/products/black-salt-crystals",
+  "Crystal Black Salt": "/products/black-salt-crystals",
+};
+
 const PRODUCTS = [
   {
     id: "black-salt",
@@ -9,9 +14,9 @@ const PRODUCTS = [
     description: "Authentic, mineral-rich Kala Namak harvested from natural deposits and refined with precision. Renowned for its therapeutic properties, distinctive volcanic aroma, and high iron content.",
     image: "/images/hero-crystal.jpg",
     varieties: [
-      "Crystal Black Salt",
+      "Black Salt Crystals",
       "Farnish Black Salt",
-      "Black Salt Mava",
+      "Black Salt Matka",
       "Black Salt Fine Granules",
       "Black Salt Powder",
     ],
@@ -90,12 +95,25 @@ export default function ProductsPage() {
                   Available Varieties:
                 </span>
                 <ul className="space-y-2">
-                  {product.varieties.map((v) => (
-                    <li key={v} className="flex items-center gap-2.5 text-sm text-text/85">
-                      <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                      <span>{v}</span>
-                    </li>
-                  ))}
+                  {product.varieties.map((v) => {
+                    const linkHref = VARIETY_LINKS[v];
+                    return (
+                      <li key={v} className="flex items-center gap-2.5 text-sm text-text/85">
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                        {linkHref ? (
+                          <Link
+                            href={linkHref}
+                            className="font-medium text-accent hover:text-mineral hover:underline underline-offset-4 decoration-accent/40 hover:decoration-accent flex items-center gap-1 transition-colors"
+                          >
+                            <span>{v}</span>
+                            <span className="text-[10px] font-bold">↗</span>
+                          </Link>
+                        ) : (
+                          <span>{v}</span>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 

@@ -4,6 +4,11 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Link from "next/link";
 
+const VARIETY_LINKS: Record<string, string> = {
+  "Black Salt Crystals": "/products/black-salt-crystals",
+  "Crystal Black Salt": "/products/black-salt-crystals",
+};
+
 const PRODUCTS = [
   {
     id: 1,
@@ -11,9 +16,9 @@ const PRODUCTS = [
     type: "Ayurvedic & Food Grade",
     image: "/images/hero-crystal.jpg",
     items: [
-      "Crystal Black Salt",
+      "Black Salt Crystals",
       "Farnish Black Salt",
-      "Black Salt Mava",
+      "Black Salt Matka",
       "Black Salt Fine Granules",
       "Black Salt Powder",
     ],
@@ -78,12 +83,25 @@ export default function ProductHorizontal() {
                     <div className="mb-6">
                       <span className="text-xs uppercase tracking-wider text-text/50 font-medium block mb-3">Available Varieties:</span>
                       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2">
-                        {product.items.map((item, i) => (
-                          <li key={i} className="flex items-center gap-2.5 text-text/80 text-xs md:text-sm">
-                            <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                            <span>{item}</span>
-                          </li>
-                        ))}
+                        {product.items.map((item, i) => {
+                          const linkHref = VARIETY_LINKS[item];
+                          return (
+                            <li key={i} className="flex items-center gap-2.5 text-text/80 text-xs md:text-sm">
+                              <span className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                              {linkHref ? (
+                                <Link
+                                  href={linkHref}
+                                  className="text-accent hover:text-mineral underline underline-offset-2 decoration-accent/40 hover:decoration-accent transition-colors font-medium flex items-center gap-1"
+                                >
+                                  <span>{item}</span>
+                                  <span className="text-[10px] font-bold">↗</span>
+                                </Link>
+                              ) : (
+                                <span>{item}</span>
+                              )}
+                            </li>
+                          );
+                        })}
                       </ul>
                     </div>
                   </div>
