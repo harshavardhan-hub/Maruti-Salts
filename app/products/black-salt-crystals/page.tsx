@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Phone, Mail, ShieldCheck, Sparkles, Package } from "lucide-react";
+import { ArrowLeft, CheckCircle2, Mail, ShieldCheck, Sparkles, Package } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Black Salt Crystals | Premium Matka Kala Namak | Maruti Salts",
