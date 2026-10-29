@@ -146,7 +146,7 @@ export default function BlackSaltCrystalsPage() {
             </div>
             <h3 className="font-display text-xl text-text mb-2">Flexible Bulk Packaging</h3>
             <p className="text-sm text-text/75 leading-relaxed">
-              Supplied in 1kg, 25kg, 50kg, and customized bulk packaging for wholesale, retail, and export.
+              Supplied in 30kg, 35kg, 50kg, and customized bulk packaging for wholesale, retail, and export.
             </p>
           </div>
         </section>
@@ -178,7 +178,7 @@ export default function BlackSaltCrystalsPage() {
               </div>
               <div className="py-3.5 flex justify-between gap-4">
                 <dt className="text-text/60 font-medium">Available Packaging</dt>
-                <dd className="text-text font-semibold text-right">1kg, 25kg, 50kg &amp; Custom packaging</dd>
+                <dd className="text-text font-semibold text-right">30kg, 35kg, 50kg &amp; Custom packaging</dd>
               </div>
               <div className="py-3.5 flex justify-between gap-4">
                 <dt className="text-text/60 font-medium">Certification</dt>
@@ -249,7 +249,19 @@ export default function BlackSaltCrystalsPage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-            {["Farnish Black Salt", "Black Salt Matka", "Black Salt Fine Granules", "Black Salt Powder"].map((v) => (
+            <Link
+              href="/products/farnish-black-salt"
+              className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors group"
+            >
+              <span className="text-xs uppercase tracking-wider text-accent font-medium block mb-1">
+                View Variety ↗
+              </span>
+              <h4 className="font-display text-base text-text group-hover:text-accent transition-colors">
+                Farnish Black Salt
+              </h4>
+            </Link>
+
+            {["Black Salt Matka", "Black Salt Fine Granules", "Black Salt Powder"].map((v) => (
               <div
                 key={v}
                 className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors"

@@ -4,6 +4,7 @@ import Link from "next/link";
 const VARIETY_LINKS: Record<string, string> = {
   "Black Salt Crystals": "/products/black-salt-crystals",
   "Crystal Black Salt": "/products/black-salt-crystals",
+  "Farnish Black Salt": "/products/farnish-black-salt",
 };
 
 const PRODUCTS = [
