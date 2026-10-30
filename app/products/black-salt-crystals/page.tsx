@@ -261,17 +261,41 @@ export default function BlackSaltCrystalsPage() {
               </h4>
             </Link>
 
-            {["Black Salt Matka", "Black Salt Fine Granules", "Black Salt Powder"].map((v) => (
-              <div
-                key={v}
-                className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors"
-              >
-                <span className="text-xs uppercase tracking-wider text-text/50 font-medium block mb-1">
-                  Variety
-                </span>
-                <h4 className="font-display text-base text-text">{v}</h4>
-              </div>
-            ))}
+            <Link
+              href="/products/black-salt-matka"
+              className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors group"
+            >
+              <span className="text-xs uppercase tracking-wider text-accent font-medium block mb-1">
+                View Variety ↗
+              </span>
+              <h4 className="font-display text-base text-text group-hover:text-accent transition-colors">
+                Black Salt Matka
+              </h4>
+            </Link>
+
+            <Link
+              href="/products/black-salt-fine-granules"
+              className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors group"
+            >
+              <span className="text-xs uppercase tracking-wider text-accent font-medium block mb-1">
+                View Variety ↗
+              </span>
+              <h4 className="font-display text-base text-text group-hover:text-accent transition-colors">
+                Black Salt Fine Granules
+              </h4>
+            </Link>
+
+            <Link
+              href="/products/black-salt-powder"
+              className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors group"
+            >
+              <span className="text-xs uppercase tracking-wider text-accent font-medium block mb-1">
+                View Variety ↗
+              </span>
+              <h4 className="font-display text-base text-text group-hover:text-accent transition-colors">
+                Black Salt Powder
+              </h4>
+            </Link>
           </div>
         </section>
       </article>

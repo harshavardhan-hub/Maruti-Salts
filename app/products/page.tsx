@@ -5,6 +5,12 @@ const VARIETY_LINKS: Record<string, string> = {
   "Black Salt Crystals": "/products/black-salt-crystals",
   "Crystal Black Salt": "/products/black-salt-crystals",
   "Farnish Black Salt": "/products/farnish-black-salt",
+  "Black Salt Matka": "/products/black-salt-matka",
+  "Black Salt Fine Granules": "/products/black-salt-fine-granules",
+  "Black Salt Powder": "/products/black-salt-powder",
+  "Rock Salt Irani": "/products/rock-salt-irani",
+  "Himalayan Pink Rock Salt (Lahori)": "/products/himalayan-pink-rock-salt",
+  "Rock Salt Granules": "/products/rock-salt-granules",
 };
 
 const PRODUCTS = [
