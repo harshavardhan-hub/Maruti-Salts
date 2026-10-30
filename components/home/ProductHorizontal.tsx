@@ -14,6 +14,14 @@ const VARIETY_LINKS: Record<string, string> = {
   "Rock Salt Irani": "/products/rock-salt-irani",
   "Himalayan Pink Rock Salt (Lahori)": "/products/himalayan-pink-rock-salt",
   "Rock Salt Granules": "/products/rock-salt-granules",
+  "Rock Salt Suji": "/products/rock-salt-suji",
+  "Rock Salt Powder": "/products/rock-salt-powder",
+  "Industrial Rock Salt": "/products/industrial-rock-salt",
+  "Refined Crushed Salt": "/products/refined-crushed-salt",
+  "Free Flow Iodised Salt": "/products/free-flow-iodised-salt",
+  "Free Flow Lodised Salt": "/products/free-flow-iodised-salt",
+  "Free Flow Iodized Salt": "/products/free-flow-iodised-salt",
+  "Fine Dust Salt Powder": "/products/fine-dust-salt-powder",
 };
 
 const PRODUCTS = [
@@ -47,8 +55,9 @@ const PRODUCTS = [
     id: 3,
     name: "Industrial Salt",
     type: "Commercial & Refined Grade",
-    image: "/images/process-extraction.jpg",
+    image: "/Industrial%20Saltv2.jpeg",
     items: [
+      "Industrial Rock Salt",
       "Refined Crushed Salt",
       "Free Flow Iodised Salt",
       "Fine Dust Salt Powder",

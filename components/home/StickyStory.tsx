@@ -1,66 +1,48 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { useRef, useEffect } from "react";
+import { motion, useMotionValue, useTransform, MotionValue } from "framer-motion";
 
-// ─── ALL scroll ranges pre-declared as plain constants ───────────────────────
-// Desktop: 400vh container → each step gets ~100vh of scroll
-// Mobile:  250vh container → each step gets ~62vh of scroll
-// Ranges are identical percentages so both feel the same pace
-const D = {
+// ─── Unified scroll ranges identical for Mobile and Desktop ───────────────────
+const R = {
   // backgrounds
-  bg:   [0, 0.08, 0.78, 0.88] as const,
+  bg:   [0, 0.08, 0.74, 0.82] as const,
 
-  // FIXED — clean handoffs, zero overlap between steps
-  s1:   [0, 0.12, 0.20]              as const,  // gone by 0.20
-  s2:   [0.20, 0.26, 0.47, 0.53]    as const,  // starts at 0.20 ← was 0.18
-  s3:   [0.53, 0.58, 0.70, 0.76]    as const,  // starts at 0.53 ← was 0.48
-  s4:   [0.76, 0.82, 1,    1   ]    as const,  // starts at 0.76 ← was 0.72
+  // All 4 slides evenly spaced with generous dwell for each
+  s1:   [0, 0.16, 0.24]              as const,  // Slide 1: Deep Within the Earth
+  s2:   [0.24, 0.30, 0.46, 0.52]    as const,  // Slide 2: Centuries of Mineral Formation
+  s3:   [0.52, 0.58, 0.72, 0.78]    as const,  // Slide 3: Harvested with Precision
+  s4:   [0.78, 0.84, 1.0 ]          as const,  // Slide 4: Delivered Across India & the World
 
-  // pills — shift to match s2 window
-  p0:   [0.28, 0.34] as const,
-  p1:   [0.33, 0.39] as const,
-  p2:   [0.38, 0.44] as const,
+  // pills — match s2 window
+  p0:   [0.30, 0.35] as const,
+  p1:   [0.35, 0.40] as const,
+  p2:   [0.40, 0.45] as const,
 
-  // process steps — shift to match s3 window
-  t0:   [0.58, 0.63] as const,
-  t1:   [0.62, 0.67] as const,
-  t2:   [0.66, 0.71] as const,
-  t3:   [0.70, 0.75] as const,
+  // process steps — match s3 window
+  t0:   [0.58, 0.62] as const,
+  t1:   [0.62, 0.66] as const,
+  t2:   [0.66, 0.70] as const,
+  t3:   [0.70, 0.74] as const,
 
   // images
-  img2: [0.20, 0.26] as const,
-  img3: [0.53, 0.58] as const,
-
-  // map
-  map:  [0.82, 0.96] as const,
-
-  // destination circles
-  c0:   [0.84, 0.89] as const,
-  c1:   [0.86, 0.91] as const,
-  c2:   [0.88, 0.93] as const,
-  c3:   [0.90, 0.95] as const,
-  c4:   [0.92, 0.97] as const,
+  img2: [0.24, 0.30] as const,
+  img3: [0.52, 0.58] as const,
+  img4: [0.78, 0.84] as const,
 };
 
-// Mobile uses SAME percentage ranges as desktop.
-// The shorter container (250vh vs 400vh) means each percent = less physical scroll.
-// This makes mobile feel exactly as fast as desktop naturally.
-const M = { ...D }; // identical ranges — container height does the work
+type Ranges = typeof R;
 
-type Ranges = typeof D;
-
-// ─── Hook: builds ALL MotionValues for one set of ranges ─────────────────────
+// ─── Hook: builds ALL MotionValues identically ───────────────────────────────
 function useStoryValues(progress: MotionValue<number>, r: Ranges) {
   return {
     bgColors: useTransform(progress, [...r.bg], ["#F7F4EF", "#1C1A17", "#1C1A17", "#F7F4EF"]),
     textColors: useTransform(progress, [...r.bg], ["#1C1A17", "#F7F4EF", "#F7F4EF", "#1C1A17"]),
 
-    // s1 starts at 0, so we just append 1 to the end
     s1Op: useTransform(progress, [...r.s1, 1], [1, 1, 0, 0]),
     s2Op: useTransform(progress, [0, ...r.s2, 1], [0, 0, 1, 1, 0, 0]),
     s3Op: useTransform(progress, [0, ...r.s3, 1], [0, 0, 1, 1, 0, 0]),
-    s4Op: useTransform(progress, [0, ...r.s4], [0, 0, 1, 1, 1]),
+    s4Op: useTransform(progress, [0, r.s4[0], r.s4[1], 1], [0, 0, 1, 1]),
 
     p0Op: useTransform(progress, [...r.p0], [0, 1]),
     p0Y: useTransform(progress, [...r.p0], [18, 0]),
@@ -80,50 +62,41 @@ function useStoryValues(progress: MotionValue<number>, r: Ranges) {
 
     img2Clip: useTransform(progress, [...r.img2], ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"]),
     img3Clip: useTransform(progress, [...r.img3], ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"]),
+    img4Clip: useTransform(progress, [...r.img4], ["inset(0% 100% 0% 0%)", "inset(0% 0% 0% 0%)"]),
 
-    mapPath: useTransform(progress, [...r.map], [0, 1]),
-
-    c0Sc: useTransform(progress, [...r.c0], [0, 1]),
-    c0Op: useTransform(progress, [...r.c0], [0, 1]),
-    c1Sc: useTransform(progress, [...r.c1], [0, 1]),
-    c1Op: useTransform(progress, [...r.c1], [0, 1]),
-    c2Sc: useTransform(progress, [...r.c2], [0, 1]),
-    c2Op: useTransform(progress, [...r.c2], [0, 1]),
-    c3Sc: useTransform(progress, [...r.c3], [0, 1]),
-    c3Op: useTransform(progress, [...r.c3], [0, 1]),
-    c4Sc: useTransform(progress, [...r.c4], [0, 1]),
-    c4Op: useTransform(progress, [...r.c4], [0, 1]),
-
-    scrollIndOp: useTransform(progress, [0.88, 1], [1, 0]),
+    scrollIndOp: useTransform(progress, [0.85, 0.95], [1, 0]),
   };
 }
 
 // ─── Main component ───────────────────────────────────────────────────────────
 export default function StickyStory() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const scrollYProgress = useMotionValue(0);
 
   useEffect(() => {
-    setMounted(true);
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    const observer = new ResizeObserver(check);
-    observer.observe(document.documentElement);
-    return () => observer.disconnect();
-  }, []);
+    const updateProgress = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const totalScrollable = el.offsetHeight - window.innerHeight;
+      if (totalScrollable <= 0) return;
+      // Compute accurate progress strictly within Section 2 sticky window
+      const currentScroll = -rect.top;
+      const progress = Math.max(0, Math.min(1, currentScroll / totalScrollable));
+      scrollYProgress.set(progress);
+    };
 
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    return () => {
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+    };
+  }, [scrollYProgress]);
 
-  // ── Both sets of values always computed — zero conditional hooks ──────────
-  const dv = useStoryValues(scrollYProgress, D);
-  const mv = useStoryValues(scrollYProgress, M);
-
-  // After mount, pick the right set; before mount use desktop (SSR safe)
-  const v = mounted && isMobile ? mv : dv;
+  // Identical motion values and ranges for both mobile and desktop
+  const v = useStoryValues(scrollYProgress, R);
 
   const PILLS = [
     { op: v.p0Op, y: v.p0Y, label: "Rich in 84+ Trace Minerals" },
@@ -138,20 +111,10 @@ export default function StickyStory() {
     { op: v.t3Op, y: v.t3Y, label: "Packaging & dispatch" },
   ];
 
-  const CIRCLES: [number, number][] = [
-    [250, 120], [280, 180], [150, 150], [120, 250], [250, 280],
-  ];
-  const circleData = [
-    { sc: v.c0Sc, op: v.c0Op },
-    { sc: v.c1Sc, op: v.c1Op },
-    { sc: v.c2Sc, op: v.c2Op },
-    { sc: v.c3Sc, op: v.c3Op },
-    { sc: v.c4Sc, op: v.c4Op },
-  ];
 
   return (
-    // 250vh on mobile, 400vh on desktop — same % ranges = same perceived speed
-    <section ref={containerRef} className="h-[250vh] md:h-[400vh] relative">
+    // Exact same 250vh container for both mobile and desktop
+    <section ref={containerRef} className="h-[250vh] relative">
       <motion.div
         className="sticky top-0 h-screen w-full flex items-center overflow-hidden"
         style={{ backgroundColor: v.bgColors, color: v.textColors }}
@@ -283,45 +246,33 @@ export default function StickyStory() {
               />
             </motion.div>
 
-            {/* SVG Map — Step 4 */}
+            {/* Image 4 — Global Delivery Network */}
             <motion.div
-              className="absolute inset-0 flex items-center justify-center p-4"
-              style={{ opacity: v.s4Op }}
+              className="absolute inset-0 rounded-lg md:rounded-xl overflow-hidden shadow-2xl bg-[#0e0e10]"
+              style={{ opacity: v.s4Op, clipPath: v.img4Clip }}
             >
-              <svg
-                viewBox="0 0 400 400"
-                className="w-full max-w-[280px] md:max-w-md h-auto"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              >
-                <path
-                  d="M200,50 C250,50 300,100 300,150 C300,200 250,350 200,350 C150,350 100,200 100,150 C100,100 150,50 200,50 Z"
-                  strokeDasharray="5 5"
-                  opacity="0.2"
-                />
-                <motion.path
-                  d="M200,200 L250,120 M200,200 L280,180 M200,200 L150,150 M200,200 L120,250 M200,200 L250,280"
-                  stroke="var(--color-accent, #6B4E2A)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  style={{ pathLength: v.mapPath }}
-                />
-                <circle cx="200" cy="200" r="5" fill="var(--color-accent, #6B4E2A)" />
-                {CIRCLES.map(([cx, cy], i) => (
-                  <motion.circle
-                    key={i}
-                    cx={cx}
-                    cy={cy}
-                    r="4"
-                    fill="currentColor"
-                    style={{
-                      scale: circleData[i].sc,
-                      opacity: circleData[i].op,
-                    }}
-                  />
-                ))}
-              </svg>
+              <img
+                src="/images/global-delivery.jpg"
+                alt="Global Delivery Network Across India and the World"
+                className="w-full h-full object-cover rounded-lg md:rounded-xl"
+                loading="lazy"
+                decoding="async"
+                width={800}
+                height={600}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-3 right-3 md:bottom-5 md:left-5 md:right-5 flex items-center justify-between pointer-events-none">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] md:text-xs text-white/90">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
+                  </span>
+                  <span className="tracking-wide">Global Supply Network</span>
+                </div>
+                <div className="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full bg-black/70 backdrop-blur-md border border-white/10 text-[11px] md:text-xs text-amber-300 font-mono">
+                  India • Worldwide
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>

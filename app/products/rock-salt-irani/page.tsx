@@ -266,20 +266,29 @@ export default function RockSaltIraniPage() {
               </h4>
             </Link>
 
-            {[
-              "Rock Salt Suji",
-              "Rock Salt Powder",
-            ].map((v) => (
-              <div
-                key={v}
-                className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors"
-              >
-                <span className="text-xs uppercase tracking-wider text-text/50 font-medium block mb-1">
-                  Variety
-                </span>
-                <h4 className="font-display text-base text-text">{v}</h4>
-              </div>
-            ))}
+            <Link
+              href="/products/rock-salt-suji"
+              className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors group"
+            >
+              <span className="text-xs uppercase tracking-wider text-accent font-medium block mb-1">
+                View Variety ↗
+              </span>
+              <h4 className="font-display text-base text-text group-hover:text-accent transition-colors">
+                Rock Salt Suji
+              </h4>
+            </Link>
+
+            <Link
+              href="/products/rock-salt-powder"
+              className="bg-surface p-4 border border-mineral/15 rounded-sm hover:border-accent/40 transition-colors group"
+            >
+              <span className="text-xs uppercase tracking-wider text-accent font-medium block mb-1">
+                View Variety ↗
+              </span>
+              <h4 className="font-display text-base text-text group-hover:text-accent transition-colors">
+                Rock Salt Powder
+              </h4>
+            </Link>
           </div>
         </section>
       </article>

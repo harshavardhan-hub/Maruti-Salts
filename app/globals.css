@@ -31,6 +31,14 @@ body {
   background: var(--color-accent);
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Lenis Recommended */
 html.lenis, html.lenis body {
   height: auto;

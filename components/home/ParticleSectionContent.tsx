@@ -2,6 +2,7 @@
 
 import { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { MT_POINTS } from "./mtPoints";
 
 function Particle({ targetX, targetY, scrollYProgress }: { targetX: number, targetY: number, scrollYProgress: MotionValue<number> }) {
   const randomX = useMemo(() => (Math.random() - 0.5) * 1200, []);
@@ -30,43 +31,47 @@ export default function ParticleSectionContent() {
   });
 
   const points = useMemo(() => {
-    const pts = [];
-    // M shape: M 100 250 L 150 100 L 200 250
-    for(let i=0; i<50; i++) pts.push({ x: 100 + i*1, y: 250 - i*3 });
-    for(let i=0; i<50; i++) pts.push({ x: 150 + i*1, y: 100 + i*3 });
-    // horizontal bar M 125 175 H 175
-    for(let i=0; i<50; i++) pts.push({ x: 125 + i, y: 175 });
+    const pts: { x: number; y: number }[] = [];
+
+    // Classical serif Cormorant Garamond MT letter particles
+    for (const [x, y] of MT_POINTS) {
+      pts.push({ x, y });
+    }
     
-    // Add extra decorative particles forming a circle
-    for(let i=0; i<150; i++) {
-      const angle = (i / 150) * Math.PI * 2;
-      pts.push({ x: 150 + Math.cos(angle)*100, y: 175 + Math.sin(angle)*100 });
+    // Decorative particle circle framing the monogram (radius 88, centered at 150, 150)
+    for (let i = 0; i < 120; i++) {
+      const angle = (i / 120) * Math.PI * 2;
+      pts.push({ x: 150 + Math.cos(angle) * 88, y: 150 + Math.sin(angle) * 88 });
     }
     return pts;
   }, []);
 
-  const purityOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
-  const purityScale = useTransform(scrollYProgress, [0.7, 1], [0.8, 1]);
+  const goldOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 1]);
+  const goldScale = useTransform(scrollYProgress, [0.7, 1], [0.9, 1]);
 
   return (
     <section ref={ref} className="h-screen bg-mineral relative text-bg overflow-hidden flex flex-col items-center justify-center">
-      <h2 className="absolute top-24 text-bg/60 uppercase tracking-[0.4em] text-sm z-20">
+      <h2 className="absolute top-14 md:top-20 text-bg/60 uppercase tracking-[0.4em] text-xs md:text-sm z-20">
         Every grain tells a story.
       </h2>
 
-      <div className="relative w-full max-w-4xl flex items-center justify-center">
-        <svg viewBox="0 0 300 350" className="w-[300px] h-[350px] overflow-visible absolute z-10">
-          {points.map((pt, i) => (
-            <Particle key={i} targetX={pt.x} targetY={pt.y} scrollYProgress={scrollYProgress} />
-          ))}
-        </svg>
+      <div className="relative flex flex-col items-center justify-center z-10">
+        {/* Compact, elegant MT circular particle crest */}
+        <div className="relative w-[190px] h-[190px] md:w-[230px] md:h-[230px] flex items-center justify-center">
+          <svg viewBox="50 50 200 200" className="w-full h-full overflow-visible">
+            {points.map((pt, i) => (
+              <Particle key={i} targetX={pt.x} targetY={pt.y} scrollYProgress={scrollYProgress} />
+            ))}
+          </svg>
+        </div>
         
+        {/* GOLD text placed closely beneath MT */}
         <motion.div 
-          className="absolute z-20"
-          style={{ opacity: purityOpacity, scale: purityScale }}
+          className="mt-1 md:mt-2 pointer-events-none select-none text-center"
+          style={{ opacity: goldOpacity, scale: goldScale }}
         >
-          <h3 className="font-display text-[5rem] md:text-[8rem] text-accent tracking-widest">
-            PURITY
+          <h3 className="font-display text-[3.5rem] sm:text-[4.5rem] md:text-[5.5rem] text-accent tracking-[0.25em] pl-[0.25em] leading-none">
+            GOLD
           </h3>
         </motion.div>
       </div>
