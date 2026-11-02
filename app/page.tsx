@@ -3,6 +3,7 @@ import StickyStory from "@/components/home/StickyStory";
 import StatsSection from "@/components/home/StatsSection";
 import ProductHorizontal from "@/components/home/ProductHorizontal";
 import WhyMaruti from "@/components/home/WhyMaruti";
+import HomeCertifications from "@/components/home/HomeCertifications";
 import ParticleSection from "@/components/home/ParticleSection";
 import TestimonialCTA from "@/components/home/TestimonialCTA";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <StatsSection />
       <ProductHorizontal />
       <WhyMaruti />
+      <HomeCertifications />
       <ParticleSection />
       <TestimonialCTA />
     </>
