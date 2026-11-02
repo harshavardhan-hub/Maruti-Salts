@@ -5,7 +5,7 @@ import CertificationsViewer from "@/components/certifications/CertificationsView
 export const metadata: Metadata = {
   title: "Official Certifications & Lab Reports | FSSAI, AQC Lab, GST & MSME | Maruti Salts",
   description:
-    "Review Maruti Salts' verified regulatory certifications and third-party laboratory test reports: FSSAI Form C license, AQC Laboratory chemical analysis, GST REG-06, Udyam MSME, and Shop & Establishment registration.",
+    "Review Maruti Salts' verified regulatory certifications and AQC laboratory test reports: FSSAI Form C license, AQC Laboratory chemical analysis, GST REG-06, Udyam MSME, and Shop & Establishment registration.",
 };
 
 export default function CertificationsPage() {

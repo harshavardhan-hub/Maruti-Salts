@@ -42,7 +42,7 @@ export default function QualityPage() {
           View Our Verified Licenses &amp; Lab Reports
         </h3>
         <p className="text-sm sm:text-base text-bg/80 max-w-xl mx-auto mb-8">
-          Inspect our official FSSAI Form C license (16-page schedule), third-party AQC laboratory test reports, GST registration, and MSME certificates.
+          Inspect our official FSSAI Form C license (16-page schedule), AQC laboratory test reports, GST registration, and MSME certificates.
         </p>
         <Link
           href="/certifications"

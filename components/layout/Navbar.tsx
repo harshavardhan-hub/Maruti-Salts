@@ -26,7 +26,6 @@ export default function Navbar() {
     { name: "Certifications", href: "/certifications" },
     { name: "About", href: "/about" },
     { name: "Quality", href: "/quality" },
-    { name: "Team", href: "/team" },
     { name: "Contact", href: "/contact" },
   ];
 

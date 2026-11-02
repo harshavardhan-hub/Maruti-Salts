@@ -56,7 +56,7 @@ export const CERTIFICATES: CertificateDoc[] = [
     documentType: "Chemical & Microbiological Laboratory Analysis",
     pagesInfo: "Official Analytical Test Report",
     fileUrl: "/Food%20Product%20LAB%20Test%20Report%20AQC%20Labs.pdf",
-    description: "Third-party analytical test report confirming that Maruti Salts' processed mineral salt strictly complies with all FSSAI Chemical and Microbiological parameters, including purity, moisture balance, and absence of heavy metals.",
+    description: "Analytical test report confirming that Maruti Salts' processed mineral salt strictly complies with all FSSAI Chemical and Microbiological parameters, including purity, moisture balance, and absence of heavy metals.",
     highlights: [
       "Test Parameter Compliance as per FSSAI Salt Manual",
       "Moisture & Insoluble Matter Assay",

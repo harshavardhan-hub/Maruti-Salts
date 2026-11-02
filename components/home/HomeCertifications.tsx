@@ -63,7 +63,7 @@ export default function HomeCertifications() {
             </h2>
 
             <p className="text-sm sm:text-base text-text/75 leading-relaxed font-light mb-8">
-              Every batch of mineral salt processed by Maruti Salts adheres to strict food safety norms and statutory manufacturing regulations, backed by official licenses and third-party laboratory assays.
+              Every batch of mineral salt processed by Maruti Salts adheres to strict food safety norms and statutory manufacturing regulations, backed by official licenses and certified laboratory assays.
             </p>
 
             <Link
