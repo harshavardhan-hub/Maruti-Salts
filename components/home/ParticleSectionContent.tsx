@@ -51,9 +51,14 @@ export default function ParticleSectionContent() {
 
   return (
     <section ref={ref} className="h-screen bg-mineral relative text-bg overflow-hidden flex flex-col items-center justify-center">
-      <h2 className="absolute top-14 md:top-20 text-bg/60 uppercase tracking-[0.4em] text-xs md:text-sm z-20">
-        Every grain tells a story.
-      </h2>
+      <div className="absolute top-10 sm:top-12 md:top-14 text-center z-20 flex flex-col items-center gap-2 px-4 pointer-events-none">
+        <h2 className="text-bg/50 uppercase tracking-[0.35em] text-[11px] sm:text-xs md:text-sm font-light">
+          Every grain tells a story.
+        </h2>
+        <p className="font-display uppercase tracking-[0.18em] text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-[#E8C782] drop-shadow-[0_2px_12px_rgba(232,199,130,0.18)]">
+          NOT JUST A SALT, A NECESSITY
+        </p>
+      </div>
 
       <div className="relative flex flex-col items-center justify-center z-10">
         {/* Compact, elegant MT circular particle crest */}

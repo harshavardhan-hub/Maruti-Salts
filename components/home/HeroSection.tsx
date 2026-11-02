@@ -1,38 +1,27 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
-import dynamic from "next/dynamic";
-import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
+import DesktopHeroVisual from "./DesktopHeroVisual";
 
-const HeroCrystal = dynamic(() => import("./HeroCrystal"), { ssr: false });
+// Note: HeroCrystal is preserved in code at components/home/HeroCrystal.tsx
+// but disabled from loading for zero loading latency and an elevated editorial design.
 
 export default function HeroSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref);
-  const [isDesktop, setIsDesktop] = useState(true);
-
-  useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
-    <section ref={ref} className="relative w-full h-screen flex items-center bg-bg overflow-hidden pt-20">
-      {/* 3D Canvas Background for Right Side */}
-      <div className="hidden md:block absolute inset-0 md:top-0 md:left-1/2 z-0">
-        {isInView && isDesktop && <HeroCrystal />}
-      </div>
-
-      <div className="container mx-auto px-6 lg:px-12 relative z-10 grid grid-cols-1 md:grid-cols-2">
-        <div className="flex flex-col justify-center">
+    <section ref={ref} className="relative w-full min-h-screen flex items-center bg-bg overflow-hidden pt-24 pb-16 md:py-0">
+      <div className="container mx-auto px-6 lg:px-12 relative z-10 grid grid-cols-1 md:grid-cols-2 items-center gap-10 lg:gap-14">
+        
+        {/* ── Left Column: Typography & Actions ── */}
+        <div className="flex flex-col justify-center md:pl-6 lg:pl-10 xl:pl-14">
           <motion.h1 
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-            className="font-display text-[clamp(4rem,8vw,9rem)] leading-[0.9] text-text mb-8"
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display text-[clamp(2.8rem,5.5vw,5.4rem)] leading-[0.94] text-text mb-5 md:mb-6"
           >
             Born from<br />
             Earth.<br />
@@ -43,8 +32,8 @@ export default function HeroSection() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
-            className="text-lg md:text-xl text-text/80 max-w-md mb-10"
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="text-base md:text-lg text-text/80 max-w-md mb-7 md:mb-8 leading-relaxed"
           >
             India&apos;s finest Black Salt, Rock Salt &amp; Industrial Salt manufacturer.
           </motion.p>
@@ -52,13 +41,22 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <Link href="/products" className="inline-block bg-mineral text-bg px-8 py-4 uppercase tracking-widest text-sm hover:bg-accent transition-colors duration-300">
+            <Link 
+              href="/products" 
+              className="inline-block bg-mineral text-bg px-7 py-3.5 uppercase tracking-widest text-xs md:text-sm hover:bg-accent transition-colors duration-300 shadow-sm"
+            >
               Explore Our Salts
             </Link>
           </motion.div>
         </div>
+
+        {/* ── Right Column: 3 Sculptural Mineral Arches (Desktop Only) ── */}
+        <div className="hidden md:flex items-center justify-center lg:justify-end">
+          <DesktopHeroVisual />
+        </div>
+
       </div>
     </section>
   );

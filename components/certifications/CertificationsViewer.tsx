@@ -111,7 +111,7 @@ export const CERTIFICATES: CertificateDoc[] = [
     description: "Statutory commercial operating license issued under the Madhya Pradesh Shops and Commercial Establishments Act for our manufacturing facility located at Food Processing Park, Jaggakhedi Industrial Area, Mandsaur.",
     highlights: [
       "Statutory Industrial Park Registration",
-      "Plot No. 124 & 125, Food Processing Park",
+      "Plot No. 125, Food Processing Park",
       "Jaggakhedi Industrial Area, Mandsaur (M.P.)",
       "Compliant with Labour & Operating Norms"
     ],

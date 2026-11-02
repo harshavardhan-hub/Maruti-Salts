@@ -25,7 +25,7 @@ export default function ContactPage() {
               <div>
                 <p className="text-lg md:text-xl text-text/80 leading-relaxed font-light">
                   <span className="font-medium text-text block mb-1">Maruti Trades</span>
-                  Plot No. 124 & 125, Food Processing Park<br />
+                  Plot No. 125, Food Processing Park<br />
                   Jaggakhedi Industrial Area<br />
                   Mandsaur, Madhya Pradesh - 458001<br />
                   India

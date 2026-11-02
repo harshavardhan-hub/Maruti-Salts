@@ -17,7 +17,7 @@ export default function Footer() {
             Born from Earth. Refined by Time.
           </p>
           <address className="text-bg/60 text-sm leading-relaxed not-italic">
-            Plot No. 124 & 125, Food Processing Park<br />
+            Plot No. 125, Food Processing Park<br />
             Jaggakhedi Industrial Area<br />
             Mandsaur, Madhya Pradesh - 458001<br />
             India
