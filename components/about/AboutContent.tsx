@@ -18,7 +18,7 @@ import {
 
 
 export default function AboutContent() {
-  const stakeholderPillars = [
+  const customerPillars = [
     {
       label: "For our Consumers",
       badge: "Pure & Safe",
@@ -128,7 +128,7 @@ export default function AboutContent() {
             </div>
             
             <h1 className="font-display text-[clamp(2.3rem,4.8vw,4.2rem)] leading-[1.08] text-text font-normal">
-              Pushing boundaries and aiming for better every day for all our stakeholders.
+              Pushing boundaries and aiming for better every day for all our customers.
             </h1>
           </motion.div>
 
@@ -289,7 +289,7 @@ export default function AboutContent() {
         </div>
       </section>
 
-      {/* ── 3. Stakeholder Commitments ─────────────────────────────────── */}
+      {/* ── 3. Customer Commitments ─────────────────────────────────── */}
       <section className="py-20 lg:py-28 container mx-auto px-6 lg:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 25 }}
@@ -306,12 +306,12 @@ export default function AboutContent() {
             Standing for purity, trust, and lasting value across every grain.
           </h2>
           <p className="text-base sm:text-lg text-text/75 leading-relaxed">
-            Our foremost commitment is towards enhancing the lives of all our stakeholders. Every operational decision we make reflects our dedication to sustainable, ethical, and superior quality mineral production.
+            Our foremost commitment is towards enhancing the lives of all our customers. Every operational decision we make reflects our dedication to sustainable, ethical, and superior quality mineral production.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stakeholderPillars.map((pillar, idx) => {
+          {customerPillars.map((pillar, idx) => {
             const Icon = pillar.icon;
             return (
               <motion.div 
@@ -372,7 +372,7 @@ export default function AboutContent() {
               Our Vision, Mission &amp; Values
             </h2>
             <p className="text-sm sm:text-base text-bg/75 leading-relaxed">
-              Our foremost commitment is towards enhancing the lives of all our stakeholders. Our Vision, Mission and Values capture our ambition and how we work each day to achieve it.
+              Our foremost commitment is towards enhancing the lives of all our customers. Our Vision, Mission and Values capture our ambition and how we work each day to achieve it.
             </p>
           </motion.div>
 
@@ -391,7 +391,7 @@ export default function AboutContent() {
               </div>
               <h3 className="font-display text-2xl text-white mb-4">Our Vision</h3>
               <p className="text-sm sm:text-base text-bg/80 leading-relaxed">
-                To be India&apos;s benchmark manufacturer and global exporter of unrefined, natural mineral salts—renowned across international and domestic markets for uncompromising purity, analytical precision, and enduring stakeholder trust.
+                To be India&apos;s benchmark manufacturer and global exporter of unrefined, natural mineral salts—renowned across international and domestic markets for uncompromising purity, analytical precision, and enduring customer trust.
               </p>
             </motion.div>
 
